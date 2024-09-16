@@ -13,13 +13,25 @@ app.get("/", (req, res) => {
 });
 
 // ROTA PERFIL
-app.get("/perfil", (req, res) => {
-  res.render("perfil");
+app.get("/perfil/:nome?", (req, res) =>{
+  var nome = req.params.nome
+  res.render("perfil", { nome: nome});
 });
-
+/*  if(nome){
+    res.send(`<h2>Ola, $node{nome}! <br> Seja bem vindo!</h2>`);
+  } else {
+    res.send(`<h2>Faça o login para acessar o seu perfil.</h2>`);
+  }
+  });
+*/
 // ROTA DE VÍDEOS
-app.get("/videos", (req, res) => {
-  res.render("videos");
+app.get("/videos/:playlist?", (req, res) => {
+  const listaPlaylists = ['Pop', 'Rock', 'Jazz', 'Hip-Hop'];
+  const playlist = req.params.playlist; 
+  res.render("videos", {
+    playlist: playlist,
+    listaPlaylists: listaPlaylists
+  });
 });
 
 // ROTA DE PRODUTOS

@@ -6,10 +6,16 @@
     <title>Perfil</title>
 </head>
 <body>
-    <h1>Bem-vindo a Perfil!</h1>
+    <h1>Bem-vindo ao Perfil!</h1>
     <hr>
     <h3>Esta é a página de perfil</h3>
-    <p>Faça login para continuar...</p>
+
+    <% if (nome) { %>
+        <h2>Olá, <%= nome %>!<br> Seja bem-vindo!</h2>
+    <% } else { %>
+        <h2>Faça o login para acessar seu perfil.</h2>
+    <% } %>
+    
 </body>
 
 </html>
