@@ -1,27 +1,30 @@
-<%- include ('partials/navbar.ejs') %>
-<%- include ('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+<%- include('partials/header.ejs') %>
 
-    <h1>Pedidos</h1>
-    <%# Comentário no EJS %>
+<div class="container background-pedidos">
+    <div class="overlay">
+        <h1>Pedidos</h1>
+        
+        <h4>Tabela:</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Combos Promocionais</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% pedidos.forEach((pedido) => { %>
+                <tr>
+                    <td><%= pedido.numero %></td>
+                    <td><%= pedido.descricao %></td>
+                    <td>R$ <%= pedido.valor.toFixed(2).replace('.', ',') %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <h4>forEach sem tabela:</h4>
-    <% pedidos.forEach((pedido) => { %>
-        Produto: <%= pedido.produto %> <br>
-        Valor: <%= pedido.valor %> <br><br>
-    <% }) %>
-
-    <h4>forEach com tabela:</h4>
-    <table border="1">
-        <tr>
-            <th width="150px">Produto:</th>
-            <th>Preço:</th>
-        </tr>
-            <% pedidos.forEach((pedido)=>{ %>
-        <tr>
-            <td><%= pedido.produto %></td>
-            <td><%= pedido.valor %></td> 
-        </tr>
-            <% }) %>
-    </table>
-
-<%- include ('partials/footer.ejs') %>  
+<%- include('partials/footer.ejs') %>

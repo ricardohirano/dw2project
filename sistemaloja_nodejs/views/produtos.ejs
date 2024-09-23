@@ -1,20 +1,28 @@
-<%- include ('partials/navbar.ejs') %>
-<%- include ('partials/header.ejs') %>
+<%- include('partials/navbar.ejs') %>
+<%- include('partials/header.ejs') %>
 
-    <h1>Conheça nossos produtos:</h1>
-    <!-- TAGS EJS chamando a variável que veio do index.js -->
-    <%= produto %>
+<div class="container background-produtos">
+    <div class="overlay">
+        <h1>Conheça nossos produtos:</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome do Produto</th>
+                    <th>Preço</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% produtos.forEach(produto => { %>
+                <tr>
+                    <td><a href="/produtos/<%= produto.nome %>"><%= produto.nome %></a></td>
+                    <td>R$ <%= produto.preco.toFixed(2).replace('.', ',') %></td>
+                    <td><%= produto.categoria %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <!-- Condição para verificar se o produto não foi passado -->
-     <% if (!produto) { %>
-        <p><%= listaProdutos %></p>
-     <% } %>
-
-     <!-- forEach para percorrer a lista de produtos -->
-      <% if(!produto) { %>
-        <% listaProdutos.forEach((produto) => { %>
-            <p><a href="/produtos/<%= produto %>"><%= produto %></a></p>
-        <% }) %>
-      <% } %>
-
-<%- include ('partials/footer.ejs') %>
+<%- include('partials/footer.ejs') %>
